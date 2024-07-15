@@ -1,0 +1,30 @@
+name: Yarn Classic Nextjs standalone CI
+  on:
+    push:
+      branches: [main]
+    env:
+      DOCKER_CONTAINER: next-yarn-berry-ci
+      DOCKER_IMAGE: ghcr.io/${{ github.actor }}/next-yarn-berry
+      VERSION: ${{ github.sha }}
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
+    jobs:
+      build:
+        name: Build Job
+        runs-on: ubuntu-latest
+        steps:
+          - name: Github Checkout
+            uses: actions/checkout@v4
+
+          - name: Login ghcr
+            uses: docker/login-action@v3
+            with:
+              registry: ghcr.io
+              username: ${{ github.actor }}
+              password: ${{ secrets.GHCR_TOKEN }}
+
+          - name: Build & Push
+            uses: docker/build-push-action@v6
+            with:
+              push: true
+              tags: ${{ env.DOCKER_IMAGE }}:latest
