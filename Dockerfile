@@ -9,7 +9,6 @@ RUN yarn --immutable
 
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/.yarn ./.yarn
 COPY . .
 RUN yarn build
