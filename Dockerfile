@@ -2,7 +2,6 @@ FROM node:19-alpine AS base
 
 FROM base AS deps
 RUN corepack enable && corepack prepare yarn@4.3.1
-# RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn/releases/yarn-4.3.1.cjs ./.yarn/releases/yarn-4.3.1.cjs
