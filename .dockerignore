@@ -2,9 +2,11 @@
 /.next
 /node_modules
 /.yarn
+.pnp.*
 /Dockerfile
 /.dockerignore
 /.git
+/.github
 /.gitignore
 /README.md
 /.DS_Store
