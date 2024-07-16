@@ -1,33 +1,36 @@
 FROM node:19-alpine AS base
-RUN corepack enable && corepack prepare yarn@4.3.1
 
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
+RUN corepack enable && corepack prepare yarn@4.3.1
+# RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn/releases/yarn-4.3.1.cjs ./.yarn/releases/yarn-4.3.1.cjs
 RUN yarn install --immutable
 
 FROM base AS builder
+RUN corepack enable && corepack prepare yarn@4.3.1
 WORKDIR /app
 COPY --from=deps /app/.yarn ./.yarn
 COPY --from=deps /app/.pnp.cjs ./.pnp.cjs
+COPY --from=deps /app/.pnp.loader.mjs ./.pnp.loader.mjs
 COPY . .
 RUN yarn build
 
 FROM base AS runner
 WORKDIR /app
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.pnp.cjs ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# COPY --from=builder --chown=nextjs:nodejs /app/.next/cache ./.next/cache
+COPY --from=builder /app/.pnp.cjs ./
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-RUN rm -rf ./.yarn/cache
-COPY --from=builder --chown=nextjs:nodejs /app/.yarn ./.yarn/
+RUN rm -rf ./.yarn
+# COPY --from=builder /app/.yarn/cache ./.yarn/cache
 
-USER nextjs
+COPY --from=builder /app/.yarn/cache ./.yarn/cache
+COPY --from=builder /app/.yarn/releases ./.yarn/releases
+# COPY --from=builder /app/.yarn/unplugged ./.yarn/unplugged
+# COPY --from=builder /app/.yarn/install-state.gz ./.yarn/install-state.gz
 
 ENV HOSTNAME "0.0.0.0"
 EXPOSE 3000
