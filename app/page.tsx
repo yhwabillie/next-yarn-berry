@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>yarn berry pnp</p>
+        <p>yarn berry pnp pnp yarn4</p>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>app/page.tsx</code>
