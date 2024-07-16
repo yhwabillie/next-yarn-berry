@@ -3,7 +3,7 @@
 패키지 매니저 yarn berry, v4.3.1로 빌드한 NextJS 기본 템플릿입니다.   
 
 ``yarn dlx @yarnpkg/sdks vscode``   
-VScode PnP환경에서 발생하는 not found module 에러 대처를 위해 설치하였습니다. (sdks-prettier, typescript)
+VScode의 PnP환경에서 발생하는 not found module 에러 대처를 위해 설치하였습니다. (sdks-prettier, typescript)
 
 1. [🏠로컬] Dependency install 시간
 2. [🏠로컬] Dependency 크기
