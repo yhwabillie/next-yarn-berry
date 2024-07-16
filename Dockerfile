@@ -4,9 +4,7 @@ RUN corepack enable && corepack prepare yarn@4.3.1
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json ./
-COPY yarn.lock ./
-COPY .yarnrc.yml ./
+COPY package.json yarn.lock .yarnrc.yml ./
 RUN yarn install --immutable
 
 FROM base AS builder
