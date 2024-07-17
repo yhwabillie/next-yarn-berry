@@ -1,4 +1,4 @@
-name: Yarn Classic Nextjs standalone CI
+name: Yarn Berry Nextjs standalone CI
 on:
   push:
     branches: [main]
@@ -23,7 +23,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Build & Push
+      - name: Build & Docker Push
         uses: docker/build-push-action@v6
         with:
           push: true

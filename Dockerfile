@@ -1,4 +1,4 @@
-FROM node:19-alpine AS base
+FROM node:20-alpine AS base
 
 FROM base AS deps
 RUN corepack enable && corepack prepare yarn@4.3.1
