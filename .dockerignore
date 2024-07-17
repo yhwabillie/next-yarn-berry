@@ -1,16 +1,22 @@
-.vscode
+# build result
 .next
 
 # dependencies
+.pnp.*
 .yarn/*
 !.yarn/releases/yarn-4.3.1.cjs
 
-.pnp.*
+# docker
 Dockerfile
 .dockerignore
+
+# git
 .git
 .github
 .gitignore
+
+# etc
+.vscode
 README.md
 .DS_Store
 .prettierrc
