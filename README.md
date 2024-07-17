@@ -11,39 +11,39 @@ yarn dlx @yarnpkg/sdks vscode
 ---
 ### 1) [🏠로컬] Dependency install 시간   
 |결과: `684MS`|
-|------|
+|:------|
 |![yarn berry 종속성 install 스크린샷](./public/md/berry_img_1.png)|
   
 
 ### 2) [🏠로컬] Dependency 크기   
 |결과: `187M` (70M + 117M)|
-|------|
+|:------|
 |![yarn berry 종속성 size 스크린샷](./public/md/berry_img_2.png)|
     
 
 ### 3) [🏠로컬] .next 빌드 결과물 크기  
 |결과: `.next: 51M`|
-|------|
+|:------|
 |![yarn berry NextJS 빌드 결과물 size 스크린샷](./public/md/berry_img_3.png)|   
 
 ### 4) [🐳Docker] 로컬 이미지 크기  
 |결과: `235MB`|
-|------|
+|:------|
 |![yarn berry NextJS 로컬 docker 이미지 size 스크린샷](./public/md/berry_img_4.png)|
 
 ### 5) [🐳Docker] 로컬 이미지 build 시간 
 |결과: `44.5s`|
-|------|
+|:------|
 |![yarn berry NextJS 로컬 docker 이미지 build 시간 스크린샷](./public/md/berry_img_5.png)|
 
 ### 6) [⚡️Github Actions] CI total workflow 시간 
 |결과: `1m 21s`|
-|------|
+|:------|
 |![yarn berry NextJS github actions total workflow 시간 스크린샷](./public/md/berry_img_7.png)|
 
 ### 7-8) [⚡️Github Actions] Build Job, Build & Docker Push Step 시간 
 |Build Job 결과: `1m 13s`, Build & Docker Push Step 결과: `1m 7s`|
-|------|
+|:------|
 |![yarn berry NextJS github actions Build Job 시간](./public/md/berry_img_6.png)|
 
 #### :mag: 위 조건들을 기준으로 패키지 매니저별 비교 학습하기 위해 만들었습니다.   
